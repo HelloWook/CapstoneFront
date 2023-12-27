@@ -1,0 +1,45 @@
+.header {
+  width: 100%;
+  max-width: 2500;
+  height: 100px;
+  border-bottom: 1px solid rgba(9, 30, 66, 0.14);
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 10;
+  background-color: white;
+}
+.header .logo {
+  margin-top: 10px;
+  height: 100px;
+  width: 130px;
+  transform: scale(2);
+  transform-origin: center;
+  margin-right: 120px;
+  margin-left: 100px;
+}
+.header button {
+  border-radius: 10px;
+  height: 50%;
+  font-family: "Black Han Sans", sans-serif;
+  font-family: "Hi Melody", sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 20px;
+  font-style: bold;
+  color: #474838;
+  background-color: transparent;
+  border: 0px;
+  margin-right: 30px;
+}
+.header button:hover {
+  background-color: #ecece0;
+}
+.header .header-content-random {
+  margin-right: 300px;
+}
+.header .header-content-login:hover {
+  background-color: #b1ac8d;
+}/*# sourceMappingURL=Header.css.map */

@@ -1,0 +1,11 @@
+.article {
+  height: 180px;
+  border-radius: 30px;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 60px 30px 30px 30px;
+}
+.article .article-text {
+  font-size: 22px;
+  color: white;
+}/*# sourceMappingURL=Article.css.map */
