@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../styles/Content.css";
 import Article from "./Article";
+import UpdateArticle from "./UpdateArticle";
 
 function Content() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -30,6 +31,8 @@ function Content() {
       },
     ]
   );
+  // 모달 관리하는 상태
+  const [updateMode, setUdateMode] = useState(false);
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
   };
@@ -42,7 +45,6 @@ function Content() {
         value.toLowerCase().includes(searchTerm.toLowerCase())
     )
   );
-
   return (
     <div className="content">
       <div className="content-section-list">
@@ -53,19 +55,28 @@ function Content() {
             value={searchTerm}
             onChange={handleInputChange}
           />
-          <button className="content-section-list-appendbutton">추가</button>
-          <button className="content-section-list-appendbutton">삭제</button>
+          <button
+            className="content-section-list-appendbutton"
+            onClick={() => setUdateMode((data) => !data)}
+          >
+            {updateMode ? "취소" : "추가"}
+          </button>
         </div>
-        {filteredFlowers.map((data, index) => (
-          <Article
-            key={index}
-            img={data.img}
-            flowerName={data.flowerName}
-            type={data.type}
-            temp={data.temp}
-            humidity={data.humidity}
-          />
-        ))}
+
+        {updateMode ? (
+          <UpdateArticle appendFunction={setMyflower} />
+        ) : (
+          filteredFlowers.map((data, index) => (
+            <Article
+              key={index}
+              img={data.img}
+              flowerName={data.flowerName}
+              type={data.type}
+              temp={data.temp}
+              humidity={data.humidity}
+            />
+          ))
+        )}
       </div>
     </div>
   );
