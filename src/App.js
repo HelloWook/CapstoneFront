@@ -1,13 +1,19 @@
-import Banner from "./components/Banner";
-import Content from "./components/Content";
-import Header from "./components/Header";
 import "./styles/Global.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Main from "./components/Main";
+import Login from "./components/Login";
+import Join from "./components/Join";
+
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Banner />
-      <Content></Content>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/join" element={<Join />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
