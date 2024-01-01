@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "../styles/UpdateArticle.css";
-import { Plus } from "react-bootstrap-icons";
 
 function UpdateArticle({ appendFunction }) {
   let [mainImg, setMainImg] = useState("");

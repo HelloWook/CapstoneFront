@@ -1,8 +1,8 @@
 import "./styles/Global.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Main from "./components/Main";
-import Login from "./components/Login";
-import Join from "./components/Join";
+import Main from "./pages/Main";
+import Login from "./pages/Login";
+import Join from "./pages/Join";
 
 function App() {
   return (
