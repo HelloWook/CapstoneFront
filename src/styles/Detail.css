@@ -1,0 +1,13 @@
+.detail {
+  display: flex;
+  justify-content: center;
+
+  overflow: hidden;
+}
+.detail .detail-log {
+  width: 700px;
+  height: 400px;
+}
+.detail .detail-log span {
+  font-size: 400px;
+} /*# sourceMappingURL=Detail.css.map */
