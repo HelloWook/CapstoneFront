@@ -2,7 +2,7 @@ import "../styles/Global.css";
 import "../styles/Join.css";
 import logo from "../assets/logo.png";
 import img from "../assets/background.jpg";
-import { JoinUser } from "../services/UserApi";
+import { joinUser } from "../services/UserApi";
 import { useState } from "react";
 import { emailPattern } from "../util/JoinUserPattern";
 
@@ -11,12 +11,13 @@ function Join() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSignUp = async () => {
+  const handleSignUp = async (event) => {
+    event.preventDefault();
     if (!emailPattern.test(email)) {
       alert("이메일 양식을 지켜주세요");
       return;
     }
-    await JoinUser(email, password, nickname)
+    await joinUser(email, password, nickname)
       .then((data) => {
         alert(data.message);
       })
@@ -28,26 +29,30 @@ function Join() {
     <div className="join" style={{ backgroundImage: { img } }}>
       <div className="join-box">
         <img src={logo} alt="background" />
-        <input
-          placeholder="Nickname"
-          type="text"
-          onChange={(event) =>
-            setNickname((data) => (data = event.target.value))
-          }
-        />
-        <input
-          placeholder="Email"
-          type="text"
-          onChange={(event) => setEmail((data) => (data = event.target.value))}
-        />
-        <input
-          placeholder="Password"
-          type="password"
-          onChange={(event) =>
-            setPassword((data) => (data = event.target.value))
-          }
-        />
-        <button onClick={handleSignUp}>회원가입</button>
+        <form onSubmit={handleSignUp}>
+          <input
+            placeholder="Nickname"
+            type="text"
+            onChange={(event) =>
+              setNickname((data) => (data = event.target.value))
+            }
+          />
+          <input
+            placeholder="Email"
+            type="text"
+            onChange={(event) =>
+              setEmail((data) => (data = event.target.value))
+            }
+          />
+          <input
+            placeholder="Password"
+            type="password"
+            onChange={(event) =>
+              setPassword((data) => (data = event.target.value))
+            }
+          />
+          <button type="submit">회원가입</button>
+        </form>
       </div>
     </div>
   );
