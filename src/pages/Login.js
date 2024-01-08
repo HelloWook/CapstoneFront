@@ -2,20 +2,28 @@ import "../styles/Global.css";
 import "../styles/Login.css";
 import logo from "../assets/logo.png";
 import img from "../assets/background.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { loginUser } from "../services/UserApi";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/actions/authActions";
 
 const style = { textDecoration: "none", color: "rgb(186, 184, 184)" };
 
 function Login() {
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
       const data = await loginUser(email, password);
-      localStorage.setItem("accessToken", data.token);
+      const { token, nickname } = data;
+      localStorage.setItem("accessToken", token);
+      dispatch(login(email, nickname));
+      navigate("/");
     } catch (error) {
       alert(error.response.data.message);
     } finally {

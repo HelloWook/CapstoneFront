@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../styles/Content.css";
 import Article from "./Article";
 import UpdateArticle from "./UpdateArticle";
+import { useSelector } from "react-redux";
 
 function Content() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -31,6 +32,7 @@ function Content() {
       },
     ]
   );
+
   // 모달 관리하는 상태
   const [updateMode, setUdateMode] = useState(false);
   const handleInputChange = (event) => {
