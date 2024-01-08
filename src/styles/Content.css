@@ -21,6 +21,12 @@
   display: block;
   padding: 10px;
 }
+.content .content-section-list .content-nodata {
+  font-size: 50px;
+  margin-top: 250px;
+  margin-left: 330px;
+  color: #474838;
+}
 .content .content-section-list .content-section-list-searchbox-content {
   display: flex;
 }

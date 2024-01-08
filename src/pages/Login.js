@@ -20,9 +20,10 @@ function Login() {
     event.preventDefault();
     try {
       const data = await loginUser(email, password);
-      const { token, nickname } = data;
+      const { token, nickname, message } = data;
       localStorage.setItem("accessToken", token);
       dispatch(login(email, nickname));
+      alert(message);
       navigate("/");
     } catch (error) {
       alert(error.response.data.message);

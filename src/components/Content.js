@@ -5,6 +5,7 @@ import UpdateArticle from "./UpdateArticle";
 import { useSelector } from "react-redux";
 
 function Content() {
+  const { isLoggedIn, email, nickname } = useSelector((state) => state);
   const [searchTerm, setSearchTerm] = useState("");
   const [myFlower, setMyflower] = useState(
     // 테스트 데이터
@@ -65,7 +66,9 @@ function Content() {
           </button>
         </div>
 
-        {updateMode ? (
+        {!isLoggedIn ? (
+          <p className="content-nodata">로그인 해주세요</p>
+        ) : updateMode ? (
           <UpdateArticle appendFunction={setMyflower} />
         ) : (
           filteredFlowers.map((data, index) => (
