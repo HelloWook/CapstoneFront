@@ -28,3 +28,18 @@ export async function loginUser(email, password, nickname) {
       throw error;
     });
 }
+
+export async function Payload() {
+  return axios
+    .get("http://localhost:8080/payload", {
+      headers: {
+        authorization: localStorage.getItem("accessToken"),
+      },
+    })
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      throw error;
+    });
+}

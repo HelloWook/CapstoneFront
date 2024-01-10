@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "../styles/Content.css";
 import Article from "./Article";
 import UpdateArticle from "./UpdateArticle";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { GetFlower } from "../services/FlowerAPI";
+import { Payload } from "../services/UserApi";
+import { login } from "../redux/actions/authActions";
 
 function Content() {
+  const dispatch = useDispatch();
   const { isLoggedIn, email } = useSelector((state) => state);
   const [searchTerm, setSearchTerm] = useState("");
   const [myFlower, setMyflower] = useState([]);
-  // 리엑트 검색기능
+  const [updateMode, setUdateMode] = useState(false);
+
   const filteredFlowers = myFlower.filter((data) =>
     Object.values(data).some(
       (value) =>
@@ -17,30 +21,40 @@ function Content() {
         value.toLowerCase().includes(searchTerm.toLowerCase())
     )
   );
-  useEffect(() => {
-    async function fetchData() {
+
+  const fetchData = async () => {
+    try {
+      if (!localStorage.getItem("accessToken")) {
+        return;
+      }
+      const payload = await Payload();
+      const { nickname, email } = payload.data;
+      dispatch(login(email, nickname));
+
       if (!isLoggedIn) {
         return;
       }
-      try {
-        const encodedEmail = encodeURIComponent(email);
-        const data = await GetFlower(encodedEmail);
-        setMyflower(() => [...data.result]);
-      } catch (error) {
-        alert(error);
+
+      const encodedEmail = encodeURIComponent(email);
+      const data = await GetFlower(encodedEmail);
+      setMyflower(() => [...data.result]);
+    } catch (error) {
+      if (error.request.status === 419) {
+        alert("재로그인을 해주세요");
       }
     }
-    fetchData();
-  }, []);
+  };
 
   useEffect(() => {
-    console.log(myFlower);
-  }, [myFlower]);
+    fetchData();
+  }, [isLoggedIn]);
 
-  // 모달 관리하는 상태
-  const [updateMode, setUdateMode] = useState(false);
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
+  };
+
+  const toggleUpdateMode = () => {
+    setUdateMode((data) => !data);
   };
 
   return (
@@ -55,7 +69,7 @@ function Content() {
           />
           <button
             className="content-section-list-appendbutton"
-            onClick={() => setUdateMode((data) => !data)}
+            onClick={toggleUpdateMode}
           >
             {updateMode ? "취소" : "추가"}
           </button>
