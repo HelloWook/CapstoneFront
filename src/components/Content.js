@@ -27,7 +27,7 @@ function Content() {
         const data = await GetFlower(encodedEmail);
         setMyflower(() => [...data.result]);
       } catch (error) {
-        console.error("Error:", error);
+        alert(error);
       }
     }
     fetchData();
@@ -64,7 +64,7 @@ function Content() {
         {!isLoggedIn ? (
           <p className="content-nodata">로그인 해주세요</p>
         ) : updateMode ? (
-          <UpdateArticle appendFunction={setMyflower} />
+          <UpdateArticle />
         ) : (
           filteredFlowers.map((data, index) => (
             <Article

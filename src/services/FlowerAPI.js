@@ -1,22 +1,8 @@
 import axios from "axios";
 
-export async function UploadFlower(
-  name,
-  kind,
-  temperature,
-  humidity,
-  image_url,
-  email
-) {
+export async function UploadFlower(formData) {
   return axios
-    .post("http://localhost:8080/upload", {
-      name: name,
-      kind: kind,
-      temperature: temperature,
-      humidity: humidity,
-      image_url: image_url,
-      email: email,
-    })
+    .post("http://localhost:8080/flower/upload", formData)
     .then((response) => {
       return response.data;
     })
