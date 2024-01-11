@@ -1,0 +1,13 @@
+.detail {
+  text-align: center;
+}
+.detail .detail-title {
+  font-size: 30px;
+}
+.detail .detail-subtitle {
+  margin-top: 20px;
+  font-size: 25px;
+}
+.detail .detail-text {
+  font-size: 20px;
+}/*# sourceMappingURL=Detail.css.map */
