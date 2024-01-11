@@ -24,7 +24,11 @@ function Header() {
           나의 다육이
         </Link>
       </button>
-      <button className="header-content-community">다육 커뮤니티</button>
+      <button className="header-content-community">
+        <Link to="/community" style={style}>
+          다육 커뮤니티
+        </Link>
+      </button>
       <button className="header-content-random">다육이 추천</button>
       <button className="header-content-guide">
         <Link to="/detail" style={style}>

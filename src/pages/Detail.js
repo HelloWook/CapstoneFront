@@ -22,7 +22,7 @@ function Detail() {
       <div className="detail-text">
         다른 사용자를 비방하거나 공격하는 행동은 금지됩니다.
       </div>
-      <div className="detail-subtitle">3.반려식물을 대하는 자세</div>
+      <div className="detail-subtitle">3.반려식물(다육이)을 대하는 자세</div>
       <div className="detail-text">
         책임감을 가지고 반려식물을 키울수 있도록 노력합니다.
       </div>
