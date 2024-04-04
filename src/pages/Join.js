@@ -25,6 +25,7 @@ function Join() {
         alert(error.response.data.error);
       });
   };
+
   return (
     <div className="join" style={{ backgroundImage: { img } }}>
       <div className="join-box">

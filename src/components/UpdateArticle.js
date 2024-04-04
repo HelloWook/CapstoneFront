@@ -26,7 +26,7 @@ function UpdateArticle() {
 
   const handleUpload = async (event) => {
     event.preventDefault();
-    if (name == "" || kind == "") {
+    if (name === "" || kind === "") {
       alert("이름과 품종을 입력해주세요");
       return;
     }

@@ -1,58 +1,40 @@
 import "../styles/Global.css";
 import "../styles/Login.css";
+import { Link, useNavigate } from "react-router-dom";
+import useLogin from "../hooks/useLogin";
 import logo from "../assets/logo.png";
 import img from "../assets/background.jpg";
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { loginUser } from "../services/UserApi";
-import { useDispatch } from "react-redux";
-import { login } from "../redux/actions/authActions";
 
 const style = { textDecoration: "none", color: "rgb(186, 184, 184)" };
 
 function Login() {
-  const dispatch = useDispatch();
-
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const handleLogin = async (event) => {
+  const { email, setEmail, password, setPassword, handleLogin } = useLogin();
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      const data = await loginUser(email, password);
-      const { token, nickname, message } = data;
-      localStorage.setItem("accessToken", token);
-      dispatch(login(email, nickname));
-      alert(message);
-      navigate("/");
-    } catch (error) {
-      alert(error.response.data.message);
-    } finally {
-      setEmail("");
-      setPassword("");
+    const redirectPath = await handleLogin(email, password);
+    if (redirectPath) {
+      navigate(redirectPath);
     }
   };
 
   return (
-    <div className="login" style={{ backgroundImage: { img } }}>
+    <div className="login" style={{ backgroundImage: `url(${img})` }}>
       <div className="login-box">
         <img src={logo} alt="background" />
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleSubmit}>
           <input
             placeholder="Email"
             type="text"
             value={email}
-            onChange={(event) =>
-              setEmail((data) => (data = event.target.value))
-            }
+            onChange={(event) => setEmail(event.target.value)}
           />
           <input
             placeholder="Password"
             type="password"
             value={password}
-            onChange={(event) =>
-              setPassword((data) => (data = event.target.value))
-            }
+            onChange={(event) => setPassword(event.target.value)}
           />
           <button type="submit">로그인</button>
         </form>
