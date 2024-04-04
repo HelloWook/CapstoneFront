@@ -12,7 +12,7 @@ function UpdateArticle() {
   const [kind, setkind] = useState("");
   const [file, setFile] = useState(null);
   const { email } = useSelector((state) => state);
-  const FlowerUpload = useArtcileUpdate(); // 변경된 부분
+  const FlowerUpload = useArtcileUpdate();
 
   const setPreviewImg = (event) => {
     const selectedFile = event.target.files[0];
