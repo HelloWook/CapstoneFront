@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+// UpdateArticle.js
+import React, { useState } from "react";
 import "../styles/UpdateArticle.css";
-import { UploadFlower } from "../services/FlowerAPI";
 import { useSelector } from "react-redux";
+import useArtcileUpdate from "../hooks/useArtcileUpdate";
 
 function UpdateArticle() {
   const [mainImg, setMainImg] = useState(
@@ -11,6 +12,7 @@ function UpdateArticle() {
   const [kind, setkind] = useState("");
   const [file, setFile] = useState(null);
   const { email } = useSelector((state) => state);
+  const FlowerUpload = useArtcileUpdate(); // 변경된 부분
 
   const setPreviewImg = (event) => {
     const selectedFile = event.target.files[0];
@@ -24,19 +26,16 @@ function UpdateArticle() {
 
   const handleUpload = async (event) => {
     event.preventDefault();
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("name", name);
-    formData.append("email", email);
-    formData.append("kind", kind);
-    formData.append("temperature", "0");
-    formData.append("humidity", "0");
-    await UploadFlower(formData)
-      .then((data) => {
-        alert(data.message);
+    if (name == "" || kind == "") {
+      alert("이름과 품종을 입력해주세요");
+      return;
+    }
+    await FlowerUpload(file, name, email, kind)
+      .then((message) => {
+        alert(message);
       })
       .catch((error) => {
-        alert(error.response.data.error);
+        alert(error);
       });
   };
 
