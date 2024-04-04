@@ -1,5 +1,7 @@
 import { UploadFlower } from "../services/FlowerAPI";
-
+/**
+ * 아티클을 불러오는 로직
+ */
 const useArtcileUpdate = () => {
   const FlowerUpload = (file, name, email, kind) => {
     const formData = new FormData();
