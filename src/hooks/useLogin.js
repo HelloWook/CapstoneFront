@@ -10,17 +10,18 @@ function useLogin() {
   const [password, setPassword] = useState("");
 
   const handleLogin = async (email, password) => {
-    try {
-      const data = await loginUser(email, password);
-      const { token, nickname, message } = data;
-      localStorage.setItem("accessToken", token);
-      dispatch(login(email, nickname));
-      alert(message);
-      return "/";
-    } catch (error) {
-      alert(error.response.data.message);
-      return null;
-    }
+    await loginUser(email, password)
+      .then((data) => {
+        const { token, nickname, message } = data;
+        localStorage.setItem("accessToken", token);
+        dispatch(login(email, nickname));
+        alert(message);
+        return "/";
+      })
+      .catch((error) => {
+        alert(error.response.data.message);
+        return null;
+      });
   };
 
   return { email, setEmail, password, setPassword, handleLogin };
