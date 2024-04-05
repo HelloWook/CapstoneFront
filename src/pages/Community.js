@@ -7,7 +7,6 @@ function Community() {
   return (
     <div>
       <Header />
-      <Banner />
       <Post />
     </div>
   );

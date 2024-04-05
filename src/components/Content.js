@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import "../styles/Content.css";
 import Article from "./Article";
 import UpdateArticle from "./UpdateArticle";
-import useFetchData from "../hooks/useGetFlower";
+import useGetFlower from "../hooks/useGetFlower";
 import { useSelector } from "react-redux";
 
 function Content() {
   const { isLoggedIn } = useSelector((state) => state);
   const [searchTerm, setSearchTerm] = useState("");
   const [updateMode, setUdateMode] = useState(false);
-  const myFlower = useFetchData();
+  const myFlower = useGetFlower();
 
   const filteredFlowers = myFlower.filter((data) =>
     Object.values(data).some(

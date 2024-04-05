@@ -11,8 +11,8 @@ function useLogin() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = async (email, password) => {
-    await loginUser(email, password)
+  const handleLogin = (email, password) => {
+    loginUser(email, password)
       .then((data) => {
         const { token, nickname, message } = data;
         localStorage.setItem("accessToken", token);

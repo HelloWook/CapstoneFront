@@ -15,7 +15,7 @@ export async function joinUser(email, password, nickname) {
     });
 }
 
-export async function loginUser(email, password, nickname) {
+export async function loginUser(email, password) {
   return axios
     .post("http://localhost:8080/login", {
       email: email,

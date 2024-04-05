@@ -5,32 +5,33 @@ import { GetFlower } from "../services/FlowerAPI";
 import { Payload } from "../services/UserApi";
 import { login } from "../redux/actions/authActions";
 
-const useFetchData = () => {
+const useGetFlower = () => {
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state) => state);
   const [myFlower, setMyflower] = useState([]);
 
-  const fetchData = async () => {
-    try {
-      if (!localStorage.getItem("accessToken")) {
-        return;
-      }
-      const payload = await Payload();
-      const { nickname, email } = payload.data;
-      dispatch(login(email, nickname));
-
-      if (!isLoggedIn) {
-        return;
-      }
-
-      const encodedEmail = encodeURIComponent(email);
-      const data = await GetFlower(encodedEmail);
-      setMyflower(() => [...data.result]);
-    } catch (error) {
-      if (error.request.status === 419) {
+  const fetchData = () => {
+    Payload()
+      .then((payload) => {
+        if (!localStorage.getItem("accessToken")) {
+          return;
+        }
+        const { nickname, email } = payload.data;
+        dispatch(login(email, nickname));
+        if (!isLoggedIn) {
+          return;
+        }
+        const encodedEmail = encodeURIComponent(email);
+        return GetFlower(encodedEmail);
+      })
+      .then((data) => {
+        if (data) {
+          setMyflower(() => [...data.result]);
+        }
+      })
+      .catch((error) => {
         alert("재로그인을 해주세요");
-      }
-    }
+      });
   };
 
   useEffect(() => {
@@ -40,4 +41,4 @@ const useFetchData = () => {
   return myFlower;
 };
 
-export default useFetchData;
+export default useGetFlower;
