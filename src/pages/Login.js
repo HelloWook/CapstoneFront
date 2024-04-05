@@ -1,6 +1,6 @@
 import "../styles/Global.css";
 import "../styles/Login.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useLogin from "../hooks/useLogin";
 import logo from "../assets/logo.png";
 import img from "../assets/background.jpg";
@@ -8,15 +8,11 @@ import img from "../assets/background.jpg";
 const style = { textDecoration: "none", color: "rgb(186, 184, 184)" };
 
 function Login() {
-  const navigate = useNavigate();
   const { email, setEmail, password, setPassword, handleLogin } = useLogin();
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    const redirectPath = await handleLogin(email, password);
-    if (redirectPath) {
-      navigate(redirectPath);
-    }
+    handleLogin(email, password);
   };
 
   return (

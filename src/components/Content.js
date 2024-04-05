@@ -1,18 +1,15 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useState } from "react";
 import "../styles/Content.css";
 import Article from "./Article";
 import UpdateArticle from "./UpdateArticle";
-import { useDispatch, useSelector } from "react-redux";
-import { GetFlower } from "../services/FlowerAPI";
-import { Payload } from "../services/UserApi";
-import { login } from "../redux/actions/authActions";
+import useFetchData from "../hooks/useGetFlower";
+import { useSelector } from "react-redux";
 
 function Content() {
-  const dispatch = useDispatch();
-  const { isLoggedIn, email } = useSelector((state) => state);
+  const { isLoggedIn } = useSelector((state) => state);
   const [searchTerm, setSearchTerm] = useState("");
-  const [myFlower, setMyflower] = useState([]);
   const [updateMode, setUdateMode] = useState(false);
+  const myFlower = useFetchData();
 
   const filteredFlowers = myFlower.filter((data) =>
     Object.values(data).some(
@@ -21,33 +18,6 @@ function Content() {
         value.toLowerCase().includes(searchTerm.toLowerCase())
     )
   );
-
-  const fetchData = async () => {
-    try {
-      if (!localStorage.getItem("accessToken")) {
-        return;
-      }
-      const payload = await Payload();
-      const { nickname, email } = payload.data;
-      dispatch(login(email, nickname));
-
-      if (!isLoggedIn) {
-        return;
-      }
-
-      const encodedEmail = encodeURIComponent(email);
-      const data = await GetFlower(encodedEmail);
-      setMyflower(() => [...data.result]);
-    } catch (error) {
-      if (error.request.status === 419) {
-        alert("재로그인을 해주세요");
-      }
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, [isLoggedIn]);
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
