@@ -3,7 +3,9 @@ import { loginUser } from "../services/UserApi";
 import { useDispatch } from "react-redux";
 import { login } from "../redux/actions/authActions";
 import { useNavigate } from "react-router-dom";
-
+/**
+ * 로그인을 진행하는 로직
+ */
 function useLogin() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");

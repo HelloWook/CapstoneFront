@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { GetFlower } from "../services/FlowerAPI";
 import { Payload } from "../services/UserApi";
 import { login } from "../redux/actions/authActions";
-
+/**
+ * 자신의 다육이를 불러오는 로직
+ */
 const useGetFlower = () => {
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state) => state);
