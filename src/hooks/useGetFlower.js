@@ -30,7 +30,9 @@ const useGetFlower = () => {
         }
       })
       .catch((error) => {
-        alert("재로그인을 해주세요");
+        if (error.request.status === 419) {
+          alert("재로그인을 해주세요");
+        }
       });
   };
 
