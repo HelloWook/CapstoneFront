@@ -1,11 +1,23 @@
 .article {
-  height: 180px;
+  display: flex;
+  height: 250px;
   border-radius: 30px;
   align-items: center;
-  margin-bottom: 16px;
-  padding: 60px 30px 30px 30px;
+  background-color: #e1e1d6;
+  margin-bottom: 15px;
+}
+.article img {
+  border-radius: 10px 0px 0px 10px;
+  height: 100%;
+  width: 80%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.article p {
+  margin: 5px 0;
 }
 .article .article-text {
+  margin-left: 50px;
   font-size: 22px;
-  color: white;
+  color: #474838;
 }/*# sourceMappingURL=Article.css.map */
