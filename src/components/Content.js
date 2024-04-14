@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "../styles/Content.css";
 import Article from "./Article";
 import UpdateArticle from "./UpdateArticle";
@@ -9,15 +9,21 @@ function Content() {
   const { isLoggedIn } = useSelector((state) => state);
   const [searchTerm, setSearchTerm] = useState("");
   const [updateMode, setUdateMode] = useState(false);
-  const myFlower = useGetFlower();
+  const [myFlower, setMyflower] = useState([]);
+  const { fetchData } = useGetFlower();
+  useEffect(() => {
+    fetchData(setMyflower);
+  }, [isLoggedIn]);
 
-  const filteredFlowers = myFlower.filter((data) =>
-    Object.values(data).some(
-      (value) =>
-        typeof value === "string" &&
-        value.toLowerCase().includes(searchTerm.toLowerCase())
-    )
-  );
+  const filterFlowers = useMemo(() => {
+    return myFlower.filter((data) =>
+      Object.values(data).some(
+        (value) =>
+          typeof value === "string" &&
+          value.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    );
+  }, [myFlower, searchTerm]);
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
@@ -48,9 +54,9 @@ function Content() {
         {!isLoggedIn ? (
           <p className="content-nodata">로그인 해주세요</p>
         ) : updateMode ? (
-          <UpdateArticle />
+          <UpdateArticle setMyflower={setMyflower} />
         ) : (
-          filteredFlowers.map((data, index) => (
+          filterFlowers.map((data, index) => (
             <Article
               key={index}
               img={data.image_url}

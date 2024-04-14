@@ -31,6 +31,7 @@ function Login() {
             type="password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
+            autoComplete="current-password"
           />
           <button type="submit">로그인</button>
         </form>

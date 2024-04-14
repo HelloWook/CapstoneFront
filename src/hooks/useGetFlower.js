@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
 import "../styles/Content.css";
 import { useDispatch, useSelector } from "react-redux";
-import { GetFlower } from "../services/FlowerAPI";
+import { getFlower } from "../services/FlowerAPI";
 import { Payload } from "../services/UserApi";
 import { login } from "../redux/actions/authActions";
 /**
@@ -10,9 +9,7 @@ import { login } from "../redux/actions/authActions";
 const useGetFlower = () => {
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state) => state);
-  const [myFlower, setMyflower] = useState([]);
-
-  const fetchData = () => {
+  const fetchData = (setMyflower) => {
     Payload()
       .then((payload) => {
         if (!localStorage.getItem("accessToken")) {
@@ -24,10 +21,11 @@ const useGetFlower = () => {
           return;
         }
         const encodedEmail = encodeURIComponent(email);
-        return GetFlower(encodedEmail);
+        return getFlower(encodedEmail);
       })
       .then((data) => {
         if (data) {
+          console.log(data.result);
           setMyflower(() => [...data.result]);
         }
       })
@@ -38,11 +36,7 @@ const useGetFlower = () => {
       });
   };
 
-  useEffect(() => {
-    fetchData();
-  }, [isLoggedIn]);
-
-  return myFlower;
+  return { fetchData };
 };
 
 export default useGetFlower;
