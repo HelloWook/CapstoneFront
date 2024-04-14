@@ -26,11 +26,12 @@ export async function getFlower(email) {
     });
 }
 
-export async function deleteFlower(flower_id) {
+export async function deleteFlower(flower_id, email) {
   return axios
     .delete(`http://localhost:8080/flower/${flower_id}`, {
       headers: {
         authorization: localStorage.getItem("accessToken"),
+        email: email,
       },
     })
     .then((response) => {

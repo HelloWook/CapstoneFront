@@ -11,6 +11,7 @@ function Content() {
   const [updateMode, setUdateMode] = useState(false);
   const [myFlower, setMyflower] = useState([]);
   const { fetchData } = useGetFlower();
+
   useEffect(() => {
     fetchData(setMyflower);
   }, [isLoggedIn]);
@@ -59,11 +60,13 @@ function Content() {
           filterFlowers.map((data, index) => (
             <Article
               key={index}
+              flower_id={data.flower_id}
               img={data.image_url}
               flowerName={data.name}
               type={data.kind}
               temp={data.temperature}
               humidity={data.humidity}
+              setMyflower={setMyflower}
             />
           ))
         )}

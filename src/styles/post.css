@@ -1,0 +1,7 @@
+.post {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 50px;
+  justify-content: center;
+  grid-row: auto;
+}/*# sourceMappingURL=post.css.map */

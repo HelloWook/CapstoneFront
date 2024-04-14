@@ -1,9 +1,8 @@
 // UpdateArticle.js
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../styles/UpdateArticle.css";
 import { useSelector } from "react-redux";
 import usePostFlower from "../hooks/usePostFlower";
-import useGetFlower from "../hooks/useGetFlower";
 
 function UpdateArticle({ setMyflower }) {
   const [mainImg, setMainImg] = useState(
@@ -13,7 +12,7 @@ function UpdateArticle({ setMyflower }) {
   const [kind, setkind] = useState("");
   const [file, setFile] = useState(null);
   const { email } = useSelector((state) => state);
-  const FlowerUpload = usePostFlower();
+  const flowerUpload = usePostFlower();
   const setPreviewImg = (event) => {
     const selectedFile = event.target.files[0];
     setFile(selectedFile);
@@ -30,7 +29,7 @@ function UpdateArticle({ setMyflower }) {
       alert("이름과 품종을 입력해주세요");
       return;
     }
-    FlowerUpload(file, name, email, kind, setMyflower);
+    flowerUpload(file, name, email, kind, setMyflower);
   };
 
   return (

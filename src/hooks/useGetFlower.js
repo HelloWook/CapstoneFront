@@ -25,7 +25,6 @@ const useGetFlower = () => {
       })
       .then((data) => {
         if (data) {
-          console.log(data.result);
           setMyflower(() => [...data.result]);
         }
       })
