@@ -8,6 +8,7 @@ import Detail from "./pages/Detail";
 import store from "./redux/stores/store";
 import NotFound from "./pages/NotFound";
 import Community from "./pages/Community";
+import CommunityUpload from "./pages/CommunityUpload";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/detail" element={<Detail />} />
             <Route path="/*" element={<NotFound />} />
             <Route path="/community" element={<Community />} />
+            <Route path="/community/upload" element={<CommunityUpload />} />
           </Routes>
         </Router>
       </div>

@@ -3,9 +3,8 @@ import "../styles/Card.css";
 function Card({ title, content, email }) {
   return (
     <div className="card">
-      <p>{title}</p>
-      <p>{content}</p>
-      <p>{email}</p>
+      <p>제목 : {title}</p>
+      <p>작성자 : {email}</p>
     </div>
   );
 }

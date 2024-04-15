@@ -21,8 +21,6 @@
   width: 500px;
   border: 1px solid rgba(9, 30, 66, 0.14);
   border-radius: 5px;
-  font-family: "Black Han Sans", sans-serif;
-  font-family: "Hi Melody", sans-serif;
   font-family: "Noto Sans KR", sans-serif;
 }
 .update-article img {
@@ -37,8 +35,6 @@
   margin-left: 405px;
   height: 40px;
   width: 100px;
-  font-family: "Black Han Sans", sans-serif;
-  font-family: "Hi Melody", sans-serif;
   font-family: "Noto Sans KR", sans-serif;
   font-size: 22px;
   color: #474838;

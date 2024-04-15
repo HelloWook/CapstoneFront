@@ -3,13 +3,12 @@
   max-width: 2500;
   height: 100px;
   border-bottom: 1px solid rgba(9, 30, 66, 0.14);
-  position: relative;
+  position: fixed;
   display: flex;
   overflow: hidden;
   align-items: center;
   justify-content: center;
-  position: fixed;
-  z-index: 10;
+  z-index: 999;
   background-color: white;
 }
 .header .logo {
@@ -23,9 +22,8 @@
 }
 .header button {
   border-radius: 10px;
-  height: 50%;
-  font-family: "Black Han Sans", sans-serif;
-  font-family: "Hi Melody", sans-serif;
+  height: 60px;
+  width: 130px;
   font-family: "Noto Sans KR", sans-serif;
   font-size: 20px;
   font-style: bold;
