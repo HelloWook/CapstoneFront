@@ -30,10 +30,20 @@
   padding-left: 10px;
   font-weight: bold;
   font-size: 30px;
-  margin: 10px 0px 10px 0px;
+  margin: 10px 0px -10px 0px;
+}
+.community-upload .community-upload-box .community-upload-content .community-upload-input {
+  font-size: 22px;
+  height: 40px;
+  width: 500px;
+  border: 1px solid rgba(9, 30, 66, 0.14);
+  border-radius: 5px;
+  font-family: "Noto Sans KR", sans-serif;
+  margin-right: 48%;
 }
 .community-upload .community-upload-box .community-upload-content .box {
   background-color: white;
+  margin-top: 20px;
 }
 .community-upload .community-upload-box .community-upload-content .box .ql-toolbar.ql-snow {
   text-align: left;
@@ -49,14 +59,6 @@
   display: flex;
   justify-content: center;
 
-  .community-upload-input {
-    font-size: 22px;
 
-    height: 35px;
-    width: 500px;
-    border: 1px solid rgba(9, 30, 66, 0.14);
-    border-radius: 5px;
-    font-family: "Noto Sans KR", sans-serif;
-  }
 }
 *//*# sourceMappingURL=CommunityUpload.css.map */
