@@ -5,6 +5,15 @@ import "../styles/CommunityUpload.css";
 
 function CommunityBoard() {
   const [value, setValue] = useState("");
+  const modules = {
+    toolbar: {
+      container: [
+        ["image"],
+        [{ header: [1, 2, 3, 4, 5, false] }],
+        ["bold", "underline"],
+      ],
+    },
+  };
 
   return (
     <div className="community-upload">
@@ -19,7 +28,7 @@ function CommunityBoard() {
           />
           <p className="community-upload-title"> 게시판</p>
           <div className="box">
-            <ReactQuill theme="snow" value={value} onChange={setValue} />
+            <ReactQuill value={value} onChange={setValue} modules={modules} />
           </div>
           <button className="community-upload-button">업로드</button>
         </div>
