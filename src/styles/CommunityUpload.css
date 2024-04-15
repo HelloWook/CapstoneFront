@@ -15,8 +15,7 @@
   display: flex;
   justify-content: center;
 }
-
-.community-upload-content {
+.community-upload .community-upload-box .community-upload-content {
   margin-left: 30px;
   min-height: 900px;
   width: 1000px;
@@ -24,22 +23,40 @@
   border-radius: 40px;
   background-color: #f0efe8;
   border: 1px solid rgba(9, 30, 66, 0.14);
-  padding: 10px;
+  padding: 30px;
 }
-.community-upload-content .community-upload-section {
+.community-upload .community-upload-box .community-upload-content .community-upload-title {
+  text-align: left;
+  padding-left: 10px;
+  font-weight: bold;
+  font-size: 30px;
+  margin: 10px 0px 10px 0px;
+}
+.community-upload .community-upload-box .community-upload-content .box {
+  background-color: white;
+}
+.community-upload .community-upload-box .community-upload-content .box .ql-toolbar.ql-snow {
+  text-align: left;
+}
+.community-upload .community-upload-box .community-upload-content .box .ql-container.ql-snow {
+  font-family: "Noto-Sans-KR-Thin-Th", sans-serif;
+  height: 400px;
+}
+
+/* 
+
+.community-upload-section {
   display: flex;
   justify-content: center;
+
+  .community-upload-input {
+    font-size: 22px;
+
+    height: 35px;
+    width: 500px;
+    border: 1px solid rgba(9, 30, 66, 0.14);
+    border-radius: 5px;
+    font-family: "Noto Sans KR", sans-serif;
+  }
 }
-.community-upload-content .community-upload-section .community-upload-title {
-  font-weight: bold;
-  font-size: 22px;
-  margin: 5px 20px 0px 0px;
-}
-.community-upload-content .community-upload-section .community-upload-input {
-  font-size: 22px;
-  height: 35px;
-  width: 500px;
-  border: 1px solid rgba(9, 30, 66, 0.14);
-  border-radius: 5px;
-  font-family: "Noto Sans KR", sans-serif;
-}/*# sourceMappingURL=CommunityUpload.css.map */
+*//*# sourceMappingURL=CommunityUpload.css.map */
