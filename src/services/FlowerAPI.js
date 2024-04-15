@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export async function uploadFlower(formData) {
+export function uploadFlower(formData) {
   return axios
     .post("http://localhost:8080/flower/upload", formData)
     .then((response) => {
@@ -11,7 +11,7 @@ export async function uploadFlower(formData) {
     });
 }
 
-export async function getFlower(email) {
+export function getFlower(email) {
   return axios
     .get(`http://localhost:8080/flower/${email}`, {
       headers: {
@@ -26,7 +26,7 @@ export async function getFlower(email) {
     });
 }
 
-export async function deleteFlower(flower_id, email) {
+export function deleteFlower(flower_id, email) {
   return axios
     .delete(`http://localhost:8080/flower/${flower_id}`, {
       headers: {

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export async function joinUser(email, password, nickname) {
+export function joinUser(email, password, nickname) {
   return axios
     .post("http://localhost:8080/join", {
       email: email,
@@ -15,7 +15,7 @@ export async function joinUser(email, password, nickname) {
     });
 }
 
-export async function loginUser(email, password) {
+export function loginUser(email, password) {
   return axios
     .post("http://localhost:8080/login", {
       email: email,
@@ -29,7 +29,7 @@ export async function loginUser(email, password) {
     });
 }
 
-export async function Payload() {
+export function Payload() {
   return axios
     .get("http://localhost:8080/payload", {
       headers: {

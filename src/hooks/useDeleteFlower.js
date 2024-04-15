@@ -7,7 +7,6 @@ const useDeleteFlower = () => {
   const flowerdelete = useCallback(({ flower_id, setMyflower, email }) => {
     deleteFlower(flower_id, email)
       .then((data) => {
-        console.log(data);
         alert(data.message);
         setMyflower(() => [...data.result]);
       })
