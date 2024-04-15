@@ -2,9 +2,29 @@ import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "../styles/CommunityUpload.css";
+import { uploadPosts } from "../services/CommunityApi";
+import { useSelector } from "react-redux";
 
 function CommunityBoard() {
-  const [value, setValue] = useState("");
+  const [content, setContent] = useState("");
+  const [title, setTitle] = useState("");
+  const email = useSelector((state) => state.email);
+  const handleTitleChange = (e) => {
+    setTitle(e.currentTarget.value);
+    console.log(email);
+  };
+
+  const handleSubmit = async () => {
+    const date = new Date();
+    try {
+      await uploadPosts(title, content, email, date).then((res) =>
+        console.log(res)
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const modules = {
     toolbar: {
       container: [
@@ -25,12 +45,19 @@ function CommunityBoard() {
             className="community-upload-input"
             placeholder="제목을 입력해주세요"
             type="text"
+            onChange={handleTitleChange}
           />
           <p className="community-upload-title"> 게시판</p>
           <div className="box">
-            <ReactQuill value={value} onChange={setValue} modules={modules} />
+            <ReactQuill
+              value={content}
+              onChange={setContent}
+              modules={modules}
+            />
           </div>
-          <button className="community-upload-button">업로드</button>
+          <button className="community-upload-button" onClick={handleSubmit}>
+            업로드
+          </button>
         </div>
       </div>
     </div>

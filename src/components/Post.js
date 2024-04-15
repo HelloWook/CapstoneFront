@@ -11,15 +11,23 @@ function Post() {
 
   return (
     <div className="post">
-      {!isLoggedIn && <button>등록</button>}
-      {posts.map((post) => (
-        <Card
-          key={post.PostID}
-          title={post.Title}
-          content={post.Content}
-          email={post.email}
-        />
-      ))}
+      {isLoggedIn && (
+        <div className="button-list">
+          <button className="upload-button">등록</button>
+          <button className="upload-button">등록</button>
+          <button className="upload-button">등록</button>
+        </div>
+      )}
+      <div className="cards">
+        {posts.map((post) => (
+          <Card
+            key={post.PostID}
+            title={post.Title}
+            content={post.Content}
+            email={post.email}
+          />
+        ))}
+      </div>
     </div>
   );
 }

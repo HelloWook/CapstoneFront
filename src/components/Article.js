@@ -13,7 +13,8 @@ function Article({
   setMyflower,
 }) {
   const flowerdelete = useDeleteFlower();
-  const { email } = useSelector((state) => state);
+  const email = useSelector((state) => state.email);
+  console.log(email);
   const handleDelete = () => {
     flowerdelete({ flower_id, setMyflower, email });
   };
