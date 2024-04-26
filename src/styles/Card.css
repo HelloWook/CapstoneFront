@@ -1,4 +1,5 @@
 .card {
+  position: relative;
   font-size: 20px;
   font-weight: bold;
   color: #474838;
@@ -11,12 +12,22 @@
   margin: 15px;
   overflow: hidden;
   border: 1px solid rgba(9, 30, 66, 0.14);
+  cursor: pointer;
+}
+.card:hover {
+  transform: translateY(20px);
 }
 .card .image-box {
   width: 100%;
   height: 220px;
   overflow: hidden;
   margin: 0 auto;
+}
+.card .image-box.checked {
+  opacity: 10%;
+}
+.card .writer.checked {
+  opacity: 40%;
 }
 .card .image-thumbnail {
   width: 100%;
@@ -25,7 +36,12 @@
      object-fit: cover;
 }
 
-.card:hover {
-  transform: translateY(20px);
-  cursor: pointer;
+.check-mark {
+  font-size: 80px;
+  position: absolute;
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  color: red;
+  opacity: 100%;
 }/*# sourceMappingURL=Card.css.map */

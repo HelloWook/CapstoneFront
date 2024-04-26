@@ -21,7 +21,7 @@ function Post() {
     <div className="post">
       {isLoggedIn && (
         <div className="button-list">
-          <h2 className="img-head">이미지 게시판</h2>
+          <h2 className="img-head">커뮤니티 게시판</h2>
           {isLoggedIn && (
             <button className="upload-button">
               <Link to="/community/upload">등록</Link>
