@@ -1,15 +1,22 @@
 // Post.js
-import React from "react";
+import React, { useEffect } from "react";
 import Card from "./Card";
 import "../styles/post.css";
 import useGetPosts from "../hooks/useGetPosts";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
+import { useState } from "react";
 function Post() {
+  const [deleteCard, isDeleteCard] = useState(false);
   const posts = useGetPosts();
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  useEffect(() => {
+    console.log(deleteCard);
+  }, [deleteCard]);
 
+  const toggleDeleteCard = () => {
+    isDeleteCard((data) => !data);
+  };
   return (
     <div className="post">
       {isLoggedIn && (
@@ -20,7 +27,11 @@ function Post() {
               <Link to="/community/upload">등록</Link>
             </button>
           )}
-          {isLoggedIn && <button className="upload-button">삭제</button>}
+          {isLoggedIn && (
+            <button className="upload-button" onClick={toggleDeleteCard}>
+              삭제
+            </button>
+          )}
         </div>
       )}
       <div className="cards">
@@ -31,6 +42,7 @@ function Post() {
               title={post.Title}
               content={post.Content}
               email={post.email}
+              deleteCard={deleteCard}
             />
           ))}
         </div>

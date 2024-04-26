@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/Card.css";
-function Card({ title, content, email }) {
+function Card({ title, email }) {
   return (
     <div className="card">
       <p>제목 : {title}</p>
