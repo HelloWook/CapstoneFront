@@ -1,27 +1,39 @@
-@charset "UTF-8";
 .post .button-list {
   display: flex;
-  justify-content: center; /* 버튼들을 가운데로 정렬 */
+  justify-content: center;
+  margin-top: 60px;
+}
+.post .button-list .img-head {
+  font-size: 20px;
+  margin: 0px;
+  color: #474838;
 }
 .post .button-list .upload-button {
   font-family: "Noto Sans KR", sans-serif;
+  -webkit-text-decoration: "none";
+          text-decoration: "none";
   font-size: 20px;
   height: 40px;
-  flex: 1; /* 버튼 요소의 너비를 동일하게 설정 */
-  max-width: 120px; /* 최대 너비 설정 */
+  flex: 1;
+  max-width: 120px;
   border-radius: 20px;
-  margin-left: 88%;
-  color: #474838;
+  margin-left: 600px;
   background-color: #e1e1d6;
   border: 1px solid rgba(9, 30, 66, 0.14);
+}
+.post .button-list .upload-button a {
+  text-decoration: none;
+  color: #474838;
 }
 .post .button-list .upload-button:hover {
   animation: vibration 0.5s infinite;
 }
 .post .cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 50px;
+  display: flex;
   justify-content: center;
-  grid-row: auto;
+}
+.post .cards .card-section {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1500px;
 }/*# sourceMappingURL=post.css.map */

@@ -4,6 +4,7 @@ import Card from "./Card";
 import "../styles/post.css";
 import useGetPosts from "../hooks/useGetPosts";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 function Post() {
   const posts = useGetPosts();
@@ -13,20 +14,25 @@ function Post() {
     <div className="post">
       {isLoggedIn && (
         <div className="button-list">
-          <button className="upload-button">등록</button>
-          <button className="upload-button">등록</button>
-          <button className="upload-button">등록</button>
+          <h2 className="img-head">이미지 게시판</h2>
+          {isLoggedIn && (
+            <button className="upload-button">
+              <Link to="/community/upload">등록</Link>
+            </button>
+          )}
         </div>
       )}
       <div className="cards">
-        {posts.map((post) => (
-          <Card
-            key={post.PostID}
-            title={post.Title}
-            content={post.Content}
-            email={post.email}
-          />
-        ))}
+        <div className="card-section">
+          {posts.map((post) => (
+            <Card
+              key={post.PostID}
+              title={post.Title}
+              content={post.Content}
+              email={post.email}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
