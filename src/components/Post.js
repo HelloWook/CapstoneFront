@@ -20,6 +20,7 @@ function Post() {
               <Link to="/community/upload">등록</Link>
             </button>
           )}
+          {isLoggedIn && <button className="upload-button">삭제</button>}
         </div>
       )}
       <div className="cards">
