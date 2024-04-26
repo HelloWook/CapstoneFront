@@ -40,7 +40,6 @@ function Post() {
             <Card
               key={post.PostID}
               title={post.Title}
-              content={post.Content}
               email={post.email}
               deleteCard={deleteCard}
             />
