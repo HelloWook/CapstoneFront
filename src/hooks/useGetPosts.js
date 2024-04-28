@@ -9,7 +9,12 @@ const useGetPosts = () => {
   const fetchPosts = useCallback(() => {
     getPosts()
       .then((data) => {
-        setPosts(data.result);
+        setPosts(
+          data.result.map((post) => ({
+            ...post,
+            isChecked: false,
+          }))
+        );
       })
       .catch((error) => {
         alert(error);
@@ -20,7 +25,7 @@ const useGetPosts = () => {
     fetchPosts();
   }, [fetchPosts]);
 
-  return posts;
+  return { posts, setPosts, fetchPosts };
 };
 
 export default useGetPosts;

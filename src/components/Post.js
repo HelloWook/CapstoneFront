@@ -1,22 +1,31 @@
 // Post.js
-import React, { useEffect } from "react";
 import Card from "./Card";
 import "../styles/post.css";
 import useGetPosts from "../hooks/useGetPosts";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-function Post() {
-  const [deleteCard, isDeleteCard] = useState(false);
-  const posts = useGetPosts();
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
-  useEffect(() => {
-    console.log(deleteCard);
-  }, [deleteCard]);
+import useDeletePost from "../hooks/useDeletePost";
 
-  const toggleDeleteCard = () => {
-    isDeleteCard((data) => !data);
+function Post() {
+  const { posts, setPosts, fetchPosts } = useGetPosts();
+  const { email } = useSelector((state) => state);
+
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const postDelete = useDeletePost();
+
+  const handleDelete = () => {
+    const filterPost = posts.filter((post) => post.isChecked === true);
+    if (filterPost.length === 0) {
+      alert("삭제할 요소를 선택해주세요");
+      return;
+    }
+    filterPost.forEach((post) => {
+      postDelete(post.PostID, email).then(() => {
+        fetchPosts();
+      });
+    });
   };
+
   return (
     <div className="post">
       {isLoggedIn && (
@@ -28,7 +37,7 @@ function Post() {
             </button>
           )}
           {isLoggedIn && (
-            <button className="upload-button" onClick={toggleDeleteCard}>
+            <button className="upload-button" onClick={handleDelete}>
               삭제
             </button>
           )}
@@ -36,12 +45,13 @@ function Post() {
       )}
       <div className="cards">
         <div className="card-section">
-          {posts.map((post) => (
+          {posts.map((post, index) => (
             <Card
-              key={post.PostID}
+              key={index}
               title={post.Title}
               email={post.email}
-              deleteCard={deleteCard}
+              setPosts={setPosts}
+              index={index}
             />
           ))}
         </div>

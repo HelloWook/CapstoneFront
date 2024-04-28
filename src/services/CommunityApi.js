@@ -26,3 +26,21 @@ export function uploadPosts(Title, content, email, date) {
       throw error;
     });
 }
+
+export function deletePost(postid, email) {
+  return new Promise((resolve, reject) => {
+    axios
+      .delete(`http://localhost:8080/post/${postid}`, {
+        headers: {
+          authorization: localStorage.getItem("accessToken"),
+          email: email,
+        },
+      })
+      .then((response) => {
+        resolve(response.data);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+}

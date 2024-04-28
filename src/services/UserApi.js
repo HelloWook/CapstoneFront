@@ -40,6 +40,7 @@ export function Payload() {
       return response.data;
     })
     .catch((error) => {
+      localStorage.removeItem("accessToken");
       throw error;
     });
 }
