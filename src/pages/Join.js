@@ -5,11 +5,13 @@ import img from "../assets/background.jpg";
 import { joinUser } from "../services/UserApi";
 import { useState } from "react";
 import { emailPattern } from "../util/JoinUserPattern";
+import { useNavigate } from "react-router-dom";
 
 function Join() {
   const [nickname, setNickname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSignUp = async (event) => {
     event.preventDefault();
@@ -20,6 +22,7 @@ function Join() {
     await joinUser(email, password, nickname)
       .then((data) => {
         alert(data.message);
+        navigate("/");
       })
       .catch((error) => {
         alert(error.response.data.error);
