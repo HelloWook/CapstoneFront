@@ -1,34 +1,48 @@
-.post .button-list {
+.post {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+}
+.post .button-list {
+  display: flex;
+  margin-left: 50%;
   margin-top: 60px;
 }
 .post .button-list .img-head {
+  position: fixed;
+  left: 600px;
   font-size: 20px;
-  margin: 0px;
+  margin: 0px 0px 0px 0px;
   color: #474838;
-  margin-right: 600px;
 }
-.post .button-list .upload-button {
+.post .button-list .upload-button,
+.post .button-list .select-button,
+.post .button-list .delete-button {
   font-family: "Noto Sans KR", sans-serif;
   -webkit-text-decoration: "none";
           text-decoration: "none";
   font-size: 20px;
   height: 40px;
-  flex: 1;
-  max-width: 120px;
+  width: 100px;
   border-radius: 20px;
-  margin-right: 30px;
+  margin-left: 30px;
   background-color: #e1e1d6;
   color: #474838;
   border: 1px solid rgba(9, 30, 66, 0.14);
 }
-.post .button-list .upload-button a {
+.post .button-list .upload-button a,
+.post .button-list .select-button a,
+.post .button-list .delete-button a {
   text-decoration: none;
   color: #474838;
 }
-.post .button-list .upload-button:hover {
+.post .button-list .upload-button:hover,
+.post .button-list .select-button:hover,
+.post .button-list .delete-button:hover {
   animation: vibration 0.5s infinite;
+}
+.post .button-list .upload-button {
+  margin-left: 180px;
 }
 .post .cards {
   display: flex;

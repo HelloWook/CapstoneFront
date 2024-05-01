@@ -5,11 +5,12 @@ import useGetPosts from "../hooks/useGetPosts";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import useDeletePost from "../hooks/useDeletePost";
+import { useState } from "react";
 
 function Post() {
   const { posts, setPosts, fetchPosts } = useGetPosts();
   const { email } = useSelector((state) => state);
-
+  const [isDelete, setIsDelete] = useState(false);
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const postDelete = useDeletePost();
 
@@ -25,7 +26,7 @@ function Post() {
       });
     });
   };
-
+  console.log(posts);
   return (
     <div className="post">
       {isLoggedIn && (
@@ -37,8 +38,16 @@ function Post() {
             </button>
           )}
           {isLoggedIn && (
-            <button className="upload-button" onClick={handleDelete}>
-              삭제
+            <button
+              className="select-button"
+              onClick={() => setIsDelete((prev) => !prev)}
+            >
+              {isDelete ? "취소" : "삭제"}
+            </button>
+          )}
+          {isDelete && (
+            <button className="delete-button" onClick={handleDelete}>
+              삭제하기
             </button>
           )}
         </div>
@@ -52,6 +61,8 @@ function Post() {
               email={post.email}
               setPosts={setPosts}
               index={index}
+              isChecked={post.isChecked}
+              isDelete={isDelete}
             />
           ))}
         </div>
