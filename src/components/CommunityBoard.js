@@ -20,7 +20,6 @@ function CommunityBoard() {
     console.log(email);
   };
   const handleSubmit = () => {
-    const date = new Date();
     uploadPosts(title, content, email, previewimage)
       .then((res) => {
         alert(res.message);

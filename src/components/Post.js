@@ -13,7 +13,7 @@ function Post() {
   const [isDelete, setIsDelete] = useState(false);
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const postDelete = useDeletePost();
-
+  console.log(posts);
   const handleDelete = () => {
     const filterPost = posts.filter((post) => post.isChecked === true);
     if (filterPost.length === 0) {
@@ -63,6 +63,7 @@ function Post() {
               isChecked={post.isChecked}
               PostID={post.PostID}
               isDelete={isDelete}
+              image_url={post.image_url}
             />
           ))}
         </div>

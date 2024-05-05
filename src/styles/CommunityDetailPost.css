@@ -42,11 +42,27 @@
   border-radius: 30px;
   width: 90%;
 }
-.communitydetailpost .communitydetailpost-content .rounded-icon {
+.communitydetailpost .communitydetailpost-content .rounded-icon,
+.communitydetailpost .communitydetailpost-content .rounded-icon-active {
   font-size: 50px;
   margin-top: 30px;
   border-radius: 50%;
+  transition: 0.3s ease-in-out;
+  color: #e1e1d6;
+  border-radius: 50%;
+  border-style: solid;
+  padding: 20px;
+  background-color: white;
+}
+.communitydetailpost .communitydetailpost-content .rounded-icon:hover, .communitydetailpost .communitydetailpost-content .rounded-icon:active {
+  color: rgb(216, 51, 51);
+}
+.communitydetailpost .communitydetailpost-content .rounded-icon-active {
+  color: rgb(216, 51, 51);
 }
 .communitydetailpost .communitydetailpost-content .post-info {
   margin: 20px 0px 20px 0px;
+}
+.communitydetailpost .communitydetailpost-content .post-info span {
+  margin-left: 30px;
 }/*# sourceMappingURL=CommunityDetailPost.css.map */

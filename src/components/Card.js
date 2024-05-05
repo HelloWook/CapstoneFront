@@ -1,9 +1,25 @@
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 import "../styles/Card.css";
-function Card({ title, email, setPosts, index, isChecked, isDelete, PostID }) {
+function Card({
+  title,
+  email,
+  setPosts,
+  index,
+  isChecked,
+  isDelete,
+  PostID,
+  image_url,
+}) {
   const navigate = useNavigate();
+  const myEmail = useSelector((state) => state.email);
 
   const deleteClick = () => {
+    if (myEmail !== email) {
+      alert("자신의 게시글만 삭제할 수 있습니다.");
+      return;
+    }
     setPosts((prevPosts) => {
       return prevPosts.map((post, i) => {
         if (i === index) {
@@ -31,7 +47,11 @@ function Card({ title, email, setPosts, index, isChecked, isDelete, PostID }) {
       <div className={`image-box ${isChecked ? "checked" : ""}`}>
         <img
           className={`image-thumbnail ${isChecked ? "checked" : ""}`}
-          src="https://i.namu.wiki/i/4ucM0uKIFisi3MBXl0k8ZY3goQZtMYZxaqbih6jgBRmesC0Ode8dzd6JGeFStJl3ISkli3FVCBEFff6uf9zyUw.webp"
+          src={
+            image_url
+              ? image_url
+              : "https://i.namu.wiki/i/4ucM0uKIFisi3MBXl0k8ZY3goQZtMYZxaqbih6jgBRmesC0Ode8dzd6JGeFStJl3ISkli3FVCBEFff6uf9zyUw.webp"
+          }
           alt="post-img"
         />
       </div>

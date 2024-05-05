@@ -3,10 +3,12 @@ import useGetDetailPosts from "../hooks/useGetDetailPost";
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 
 function DetailPost() {
   const { postID } = useParams();
   const { detailPost } = useGetDetailPosts(postID);
+  const [isLiked, setTsLiked] = useState(false);
   return (
     <div className="communitydetailpost">
       <h1>{`${postID}번째 게시글`}</h1>
@@ -20,11 +22,19 @@ function DetailPost() {
           className="communitydetailpost-content-summary"
           dangerouslySetInnerHTML={{ __html: detailPost.Content }}
         />
-        <FontAwesomeIcon icon={faHeart} className="rounded-icon" />
+        <FontAwesomeIcon
+          icon={faHeart}
+          className={isLiked ? "rounded-icon-active" : "rounded-icon"}
+          onClick={() => {
+            setTsLiked((prev) => {
+              return !prev;
+            });
+          }}
+        />
         <div className="post-info">
-          <span>좋아요</span>
-          <span>조회수</span>
-          <span>댓글수</span>
+          <span>좋아요 : 0</span>
+          <span>조회수 : 0</span>
+          <span>댓글수 : 0</span>
         </div>
       </div>
     </div>
