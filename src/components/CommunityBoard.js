@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 function CommunityBoard() {
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
+  const [previewimage, setPreviewImage] = useState("");
   const email = useSelector((state) => state.email);
   const quillRef = useRef();
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ function CommunityBoard() {
   };
   const handleSubmit = () => {
     const date = new Date();
-    uploadPosts(title, content, email, date)
+    uploadPosts(title, content, email, previewimage)
       .then((res) => {
         alert(res.message);
         navigate("/community");
@@ -41,6 +42,7 @@ function CommunityBoard() {
       try {
         const result = await axios.post("http://localhost:8080/img", formData);
         const IMG_URL = result.data.url;
+        setPreviewImage(IMG_URL);
         const editor = quillRef.current.getEditor();
         const range = editor.getSelection();
         editor.insertEmbed(range.index, "image", IMG_URL);

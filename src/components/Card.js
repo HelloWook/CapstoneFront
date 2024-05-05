@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import "../styles/Card.css";
-function Card({ title, email, setPosts, index, isChecked, isDelete }) {
-  const handleClick = () => {
+function Card({ title, email, setPosts, index, isChecked, isDelete, PostID }) {
+  const navigate = useNavigate();
+
+  const deleteClick = () => {
     setPosts((prevPosts) => {
       return prevPosts.map((post, i) => {
         if (i === index) {
@@ -10,16 +13,17 @@ function Card({ title, email, setPosts, index, isChecked, isDelete }) {
       });
     });
   };
+
   return (
     <div
       className={`card`}
       onClick={
         isDelete
           ? () => {
-              handleClick();
+              deleteClick();
             }
           : () => {
-              alert("안녕");
+              navigate(`/community/post/${PostID}`);
             }
       }
     >

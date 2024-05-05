@@ -26,7 +26,6 @@ function Post() {
       });
     });
   };
-  console.log(posts);
   return (
     <div className="post">
       {isLoggedIn && (
@@ -62,6 +61,7 @@ function Post() {
               setPosts={setPosts}
               index={index}
               isChecked={post.isChecked}
+              PostID={post.PostID}
               isDelete={isDelete}
             />
           ))}

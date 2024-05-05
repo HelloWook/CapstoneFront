@@ -5,11 +5,10 @@
 }
 .post .button-list {
   display: flex;
-  margin-left: 50%;
+  justify-content: center;
   margin-top: 60px;
 }
 .post .button-list .img-head {
-  position: fixed;
   left: 600px;
   font-size: 20px;
   margin: 0px 0px 0px 0px;

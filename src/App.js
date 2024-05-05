@@ -9,6 +9,7 @@ import store from "./redux/stores/store";
 import NotFound from "./pages/NotFound";
 import Community from "./pages/Community";
 import CommunityUpload from "./pages/CommunityUpload";
+import PostDetail from "./pages/PostDetail";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/*" element={<NotFound />} />
             <Route path="/community" element={<Community />} />
             <Route path="/community/upload" element={<CommunityUpload />} />
+            <Route path="/community/post/:postID" element={<PostDetail />} />
           </Routes>
         </Router>
       </div>
