@@ -1,12 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 import { getComment } from "../services/CommunityApi";
 
-const useGetComment = (postID) => {
+const useGetComment = (postID, currentPage) => {
   const [comments, setComments] = useState([]);
   const fetchComment = useCallback(() => {
-    getComment(postID)
+    getComment(postID, currentPage)
       .then((data) => {
-        console.log(data.result);
         setComments(() => {
           return data.result;
         });
@@ -14,11 +13,11 @@ const useGetComment = (postID) => {
       .catch((error) => {
         alert(error);
       });
-  }, []);
+  }, [currentPage]);
 
   useEffect(() => {
     fetchComment();
-  }, [fetchComment]);
+  }, [fetchComment, currentPage]);
 
   return { comments };
 };

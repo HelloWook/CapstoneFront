@@ -9,14 +9,66 @@
   margin: 0px;
 }
 .communitydetailpost-content-commentlist .communitydetailpost-content-commentlist-section {
+  display: flex;
   padding: 15px;
   font-family: "Noto Sans KR", sans-serif;
   background-color: #f0efe8;
   border-radius: 30px;
-  min-height: 300px;
+  min-height: 380px;
   width: 1100px;
   flex-direction: column;
   font-size: 25px;
   height: auto;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
+  position: relative;
+}
+.communitydetailpost-content-commentlist .communitydetailpost-content-commentlist-section .communitydetailpost-content-commentlist-section-pagenumber {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  font-size: 20px;
+  right: 520px;
+  bottom: 120px;
+}
+.communitydetailpost-content-commentlist .communitydetailpost-content-commentlist-section .communitydetailpost-content-commentlist-section-pagenumber .currentPage {
+  text-decoration: underline;
+}
+.communitydetailpost-content-commentlist .communitydetailpost-content-commentlist-section .communitydetailpost-content-commentlist-input {
+  position: absolute;
+  background-color: #e1e1d6;
+  border-radius: 30px;
+  min-height: 100px;
+  width: 90%;
+  bottom: 10px;
+  left: 62px;
+  font-size: 10px;
+}
+.communitydetailpost-content-commentlist .communitydetailpost-content-commentlist-section .communitydetailpost-content-commentlist-input h1 {
+  margin-top: 10px;
+  margin-left: 30px;
+}
+.communitydetailpost-content-commentlist .communitydetailpost-content-commentlist-section .communitydetailpost-content-commentlist-input input {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 20px;
+  margin-top: 5px;
+  margin-left: 30px;
+  border-radius: 5px;
+  width: 85%;
+  height: 40px;
+}
+.communitydetailpost-content-commentlist .communitydetailpost-content-commentlist-section .communitydetailpost-content-commentlist-input button {
+  font-size: 20px;
+  height: 35px;
+  width: 90px;
+  font-family: "Noto Sans KR", sans-serif;
+  color: #474838;
+  border: 1px solid rgba(9, 30, 66, 0.14);
+  border-radius: 17px;
+  position: absolute;
+  right: 10px;
+  bottom: 15px;
+}
+.communitydetailpost-content-commentlist .communitydetailpost-content-commentlist-section .communitydetailpost-content-commentlist-input button:hover {
+  animation: vibration 0.5s infinite;
 }/*# sourceMappingURL=CommentList.css.map */

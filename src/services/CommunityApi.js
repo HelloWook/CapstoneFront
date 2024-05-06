@@ -56,9 +56,20 @@ export function deletePost(postid, email) {
   });
 }
 
-export function getComment(postID) {
+export function getComment(postID, page) {
   return axios
-    .get(`http://localhost:8080/comment/${postID}`, {})
+    .get(`http://localhost:8080/comment/post/${postID}/${page}`, {})
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      throw error;
+    });
+}
+
+export function getCommentNumber(postID) {
+  return axios
+    .get(`http://localhost:8080/comment/count/${postID}`, {})
     .then((response) => {
       return response.data;
     })
