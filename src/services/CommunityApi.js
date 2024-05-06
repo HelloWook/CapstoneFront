@@ -55,3 +55,14 @@ export function deletePost(postid, email) {
       });
   });
 }
+
+export function getComment(postID) {
+  return axios
+    .get(`http://localhost:8080/comment/${postID}`, {})
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      throw error;
+    });
+}

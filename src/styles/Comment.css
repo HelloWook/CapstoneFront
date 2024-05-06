@@ -1,0 +1,17 @@
+.comment {
+  margin-top: 5px;
+  position: relative;
+}
+.comment .comment-email {
+  margin: 0px 100px 0px 30px;
+}
+.comment .comment-createdAt {
+  position: absolute;
+  right: 50px;
+}
+.comment svg {
+  position: absolute;
+  font-size: 20px;
+  top: 10px;
+  right: 15px;
+}/*# sourceMappingURL=Comment.css.map */

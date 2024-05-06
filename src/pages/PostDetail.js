@@ -1,12 +1,13 @@
 import React from "react";
 import Header from "../components/Header";
 import DetailPost from "../components/DetailPost";
-import { useParams } from "react-router-dom";
+import CommentList from "../components/CommentList";
 function PostDetail() {
   return (
     <div>
       <Header />
       <DetailPost />
+      <CommentList />
     </div>
   );
 }

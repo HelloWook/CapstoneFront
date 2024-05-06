@@ -20,6 +20,10 @@ function CommunityBoard() {
     console.log(email);
   };
   const handleSubmit = () => {
+    if (title === "") {
+      alert("제목을 입력해주세요");
+      return;
+    }
     uploadPosts(title, content, email, previewimage)
       .then((res) => {
         alert(res.message);
