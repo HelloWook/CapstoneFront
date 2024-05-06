@@ -77,3 +77,18 @@ export function getCommentNumber(postID) {
       throw error;
     });
 }
+
+export function postComment(content, email, postID) {
+  return axios
+    .post("http://localhost:8080/comment", {
+      content: content,
+      email: email,
+      postID: postID,
+    })
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      throw error;
+    });
+}

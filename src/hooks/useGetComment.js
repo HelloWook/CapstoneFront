@@ -13,13 +13,13 @@ const useGetComment = (postID, currentPage) => {
       .catch((error) => {
         alert(error);
       });
-  }, [currentPage]);
+  }, [currentPage, postID]);
 
   useEffect(() => {
     fetchComment();
   }, [fetchComment, currentPage]);
 
-  return { comments };
+  return { comments, fetchComment };
 };
 
 export default useGetComment;

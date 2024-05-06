@@ -4,6 +4,8 @@ import useGetComment from "../hooks/useGetComment";
 import { useParams } from "react-router-dom";
 import Comment from "./Comment";
 import useGetCommenCount from "../hooks/useGetCommentNumber";
+import { postComment } from "../services/CommunityApi";
+import { useSelector } from "react-redux";
 
 function CommentList() {
   const { postID } = useParams();
@@ -11,16 +13,28 @@ function CommentList() {
   const [currentPage, setCurrentPage] = useState(1);
   const [prevPage, setPrevPage] = useState(currentPage - 1);
   const [nextPage, setNextPage] = useState(currentPage + 1);
-  const { comments } = useGetComment(postID, currentPage);
-  const { commentsCount } = useGetCommenCount(postID);
+  const { comments, fetchComment } = useGetComment(postID, currentPage);
+  const { commentsCount, fetchCommentCount } = useGetCommenCount(postID);
   const pageMaxNumber = Math.ceil(commentsCount / 6);
-
+  const email = useSelector((state) => state.email);
   const commentChange = (event) => {
     if (event.target.value.length > 30) {
       alert("30자 이하로만 작성할 수 있습니다");
       return;
     }
     setComment(event.target.value);
+  };
+
+  const handleSubmit = () => {
+    postComment(comment, email, postID)
+      .then((data) => {
+        alert(data.message);
+        fetchComment();
+        fetchCommentCount();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -70,7 +84,7 @@ function CommentList() {
             onChange={commentChange}
             value={comment}
           />
-          <button>작성</button>
+          <button onClick={handleSubmit}>작성</button>
         </div>
       </div>
     </div>
