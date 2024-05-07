@@ -11,7 +11,6 @@ function DetailPost() {
   const { detailPost } = useGetDetailPosts(postID);
   const [isLiked, setTsLiked] = useState(false);
   const { commentsCount } = useGetCommenCount(postID);
-  console.log(commentsCount);
   return (
     <div className="communitydetailpost">
       <h1>{`${postID}번째 게시글`}</h1>

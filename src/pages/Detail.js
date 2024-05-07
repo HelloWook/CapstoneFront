@@ -2,7 +2,9 @@ import React from "react";
 import Header from "../components/Header";
 import "../styles/Detail.css";
 import Banner from "../components/Banner";
+import usePayload from "../hooks/usePayload";
 function Detail() {
+  usePayload();
   return (
     <div className="detail">
       <Header />
