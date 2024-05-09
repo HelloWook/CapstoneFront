@@ -9,7 +9,6 @@ import { login } from "../redux/actions/authActions";
 const usePayload = () => {
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state) => state);
-
   const payloadCheck = useCallback(() => {
     Payload()
       .then((payload) => {
@@ -31,7 +30,7 @@ const usePayload = () => {
 
   useEffect(() => {
     payloadCheck();
-  }, [payloadCheck]);
+  }, [payloadCheck, isLoggedIn]);
 };
 
 export default usePayload;

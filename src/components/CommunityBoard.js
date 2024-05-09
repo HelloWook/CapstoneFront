@@ -6,8 +6,10 @@ import { uploadPosts } from "../services/CommunityApi";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import usePayload from "../hooks/usePayload";
 
 function CommunityBoard() {
+  usePayload();
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
   const [previewimage, setPreviewImage] = useState("");

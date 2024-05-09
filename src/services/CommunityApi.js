@@ -92,3 +92,16 @@ export function postComment(content, email, postID) {
       throw error;
     });
 }
+
+export function deleteComment(commentID) {
+  return new Promise((resolve, reject) => {
+    axios
+      .delete(`http://localhost:8080/comment/${commentID}`, {})
+      .then((response) => {
+        resolve(response.data);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+}

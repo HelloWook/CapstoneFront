@@ -24,17 +24,7 @@ function DetailPost() {
           className="communitydetailpost-content-summary"
           dangerouslySetInnerHTML={{ __html: detailPost.Content }}
         />
-        <FontAwesomeIcon
-          icon={faHeart}
-          className={isLiked ? "rounded-icon-active" : "rounded-icon"}
-          onClick={() => {
-            setTsLiked((prev) => {
-              return !prev;
-            });
-          }}
-        />
         <div className="post-info">
-          <span>좋아요 : 0</span>
           <span>조회수 : 0</span>
           <span>댓글수 : {commentsCount}</span>
         </div>

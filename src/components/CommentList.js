@@ -4,7 +4,7 @@ import useGetComment from "../hooks/useGetComment";
 import { useParams } from "react-router-dom";
 import Comment from "./Comment";
 import useGetCommenCount from "../hooks/useGetCommentNumber";
-import { postComment } from "../services/CommunityApi";
+import { deleteComment, postComment } from "../services/CommunityApi";
 import { useSelector } from "react-redux";
 
 function CommentList() {
@@ -17,6 +17,7 @@ function CommentList() {
   const { commentsCount, fetchCommentCount } = useGetCommenCount(postID);
   const pageMaxNumber = Math.ceil(commentsCount / 6);
   const email = useSelector((state) => state.email);
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const commentChange = (event) => {
     if (event.target.value.length > 30) {
       alert("30자 이하로만 작성할 수 있습니다");
@@ -24,9 +25,24 @@ function CommentList() {
     }
     setComment(event.target.value);
   };
-
-  const handleSubmit = () => {
+  const handleSubmit = (comment) => {
+    if (comment.length === 0) {
+      alert("댓글을 작성해주세요");
+      return;
+    }
     postComment(comment, email, postID)
+      .then((data) => {
+        alert(data.message);
+        fetchComment();
+        fetchCommentCount();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleDeleteFlower = async (CommentID) => {
+    deleteComment(CommentID)
       .then((data) => {
         alert(data.message);
         fetchComment();
@@ -48,6 +64,8 @@ function CommentList() {
               content={data.Content}
               email={data.Email}
               createdAt={data.CreatedAt}
+              CommentID={data.CommentID}
+              handleDeleteFlower={handleDeleteFlower}
             />
           ))}
         </div>
@@ -84,7 +102,9 @@ function CommentList() {
             onChange={commentChange}
             value={comment}
           />
-          <button onClick={handleSubmit}>작성</button>
+          {isLoggedIn && (
+            <button onClick={() => handleSubmit(comment)}>작성</button>
+          )}
         </div>
       </div>
     </div>
