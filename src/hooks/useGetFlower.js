@@ -10,6 +10,9 @@ const useGetFlower = () => {
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state) => state);
   const fetchData = (setMyflower) => {
+    if (!localStorage.getItem("accessToken")) {
+      return;
+    }
     Payload()
       .then((payload) => {
         if (!localStorage.getItem("accessToken")) {

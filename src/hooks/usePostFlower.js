@@ -12,13 +12,14 @@ const usePostFlower = () => {
     formData.append("kind", kind);
     formData.append("temperature", "0");
     formData.append("humidity", "0");
+    formData.append("soilHumidity", "0");
     uploadFlower(formData)
       .then((data) => {
         alert(data.message);
         setMyflower(() => [...data.result]);
       })
       .catch((error) => {
-        alert(error.response.data.error);
+        console.log(error.response.data.error);
       });
   }, []);
 

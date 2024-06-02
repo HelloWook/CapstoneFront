@@ -66,6 +66,7 @@ function Content() {
               type={data.kind}
               temp={data.temperature}
               humidity={data.humidity}
+              soilHumidity={data.soilHumidity}
               setMyflower={setMyflower}
             />
           ))

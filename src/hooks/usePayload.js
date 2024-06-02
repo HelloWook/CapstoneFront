@@ -10,11 +10,11 @@ const usePayload = () => {
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state) => state);
   const payloadCheck = useCallback(() => {
+    if (!localStorage.getItem("accessToken")) {
+      return;
+    }
     Payload()
       .then((payload) => {
-        if (!localStorage.getItem("accessToken")) {
-          return;
-        }
         const { nickname, email } = payload.data;
         dispatch(login(email, nickname));
         if (!isLoggedIn) {
